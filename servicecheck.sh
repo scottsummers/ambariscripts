@@ -2,13 +2,14 @@
 
 AMBARI_SERVER_HOST="master01"
 ambariPort="8080"
+cluster="HDPCluster"
 SERVICE_FILE="services.t"
 
 curlServices(){
 	curl --user $username:$PASSWORD \
 	     -i -H "X-Requested-By: ambari" \
 	     -X POST -d '{"RequestInfo": {"context":"'$context' Service Check from API","command":"'$service'_SERVICE_CHECK"}, "Requests/resource_filters":[{"service_name":"'$context'"}]}' \
-	     http://$AMBARI_SERVER_HOST:$ambariPort/api/v1/clusters/HDPCluster/requests
+	     "http://$AMBARI_SERVER_HOST:$ambariPort/api/v1/clusters/HDPCluster/requests"
 	
 }
 
@@ -48,7 +49,7 @@ uNamePass
 while true; do
 	printMenu
 	echo " "
-	read -p "Select Service: " -t 120 value
+	read -p "Select Service: " value
 	case $value in
 		1 )  context="ZOOKEEPER"; service="ZOOKEEPER_QUORUM"; curlServices;;
 		2 )  context="HDFS"; service="HDFS"; curlServices;;

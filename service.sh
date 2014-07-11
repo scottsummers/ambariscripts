@@ -72,25 +72,30 @@ stopAll(){
 }
 
 
+menuCase(){
+	while true; do
+		printMenu
+		echo " "
+		read -p "Select Service: " value
+		case $value in
+			1 )  service="ZOOKEEPER"; startService;;
+			2 )  service="HDFS"; startService;;
+			3 )  service="YARN"; startService;;
+			4 )  service="MAPREDUCE2"; startService;;
+			5 )  service="HBASE"; startService;;
+			6 )  service="HIVE"; startService;;
+			7 )  service="WEBHCAT"; startService;;
+			8 )  service="OOZIE"; startService;;
+			9 )  service="GANGLIA"; startService;;
+			10 ) service="NAGIOS"; startService;;
+			11 ) startAll;;
+			12 ) stopAll;;
+			13|[Qq][Uu][Ii][Tt]|q ) echo "Goodbye!"; exit;;
+			* ) echo "Trying Again.";;
+		esac
+	done
+}
+
+
 uNamePass
-while true; do
-	printMenu
-	echo " "
-	read -p "Select Service: " -t 120 value
-	case $value in
-		1 )  service="ZOOKEEPER"; startService;;
-		2 )  service="HDFS"; startService;;
-		3 )  service="YARN"; startService;;
-		4 )  service="MAPREDUCE2"; startService;;
-		5 )  service="HBASE"; startService;;
-		6 )  service="HIVE"; startService;;
-		7 )  service="WEBHCAT"; startService;;
-		8 )  service="OOZIE"; startService;;
-		9 )  service="GANGLIA"; startService;;
-		10 ) service="NAGIOS"; startService;;
-		11 ) startAll;;
-		12 ) stopAll;;
-		13|[Qq][Uu][Ii][Tt]|q ) echo "Goodbye!"; exit;;
-		* ) echo "Trying Again.";;
-	esac
-done
+menuCase
