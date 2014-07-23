@@ -3,12 +3,13 @@
 AMBARI_SERVER_HOST="master01"
 ambariPort="8080"
 SERVICE_FILE="services"
+cluster="HDPCluster"
 
 curlServices(){
 	curl --user $username:$PASSWORD \
 	     -i -H "X-Requested-By: ambari" \
 	     -X PUT -d '{"RequestInfo": {"context" :"'$action' '$service' via REST"}, "Body": {"ServiceInfo":{"state":"'$state'"}}}' \
-	     http://$AMBARI_SERVER_HOST:$ambariPort/api/v1/clusters/HDPCluster/services/$service
+	     "http://$AMBARI_SERVER_HOST:$ambariPort/api/v1/clusters/$cluster/services/$service"
 }
 
 startServiceMenu(){
@@ -70,7 +71,6 @@ stopAll(){
 	done
 	echo "Cluster is Stopping..."
 }
-
 
 menuCase(){
 	while true; do
