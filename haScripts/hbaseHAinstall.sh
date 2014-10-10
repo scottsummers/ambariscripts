@@ -20,7 +20,7 @@ hbaseInstall(){
 	curl -X POST "http://$AMBARI_SERVER_HOST:$ambariPort/api/v1/clusters/$cluster/hosts?Hosts/host_name=$newHbaseMaster" \
 	     -H "X-Requested-By: ambari" \
 	     -u $username:$PASSWORD \
-	     -d "{\"host_components\" : [{\"HostRoles\":{\"component_name\":\"HBASE_MASTER\"}}] }"
+	     -d '{"host_components" : [{"HostRoles":{"component_name":"HBASE_MASTER"}}] }'
 	sleep 5
 	#Installs HBase to the New HBASE Master
 	service="HBASE"; state='INSTALLED'; action="Installing"; curlServices;
