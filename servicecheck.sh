@@ -9,11 +9,7 @@ curlServices(){
 	curl --user $username:$PASSWORD \
 	     -i -H "X-Requested-By: ambari" \
 	     -X POST -d '{"RequestInfo": {"context":"'$context' Service Check from API","command":"'$service'_SERVICE_CHECK"}, "Requests/resource_filters":[{"service_name":"'$context'"}]}' \
-<<<<<<< HEAD
-	     "http://$AMBARI_SERVER_HOST:$ambariPort/api/v1/clusters/HDPCluster/requests"
-=======
 	     http://$AMBARI_SERVER_HOST:$ambariPort/api/v1/clusters/$cluster/requests
->>>>>>> FETCH_HEAD
 	
 }
 
