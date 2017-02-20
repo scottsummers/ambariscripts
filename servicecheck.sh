@@ -1,6 +1,6 @@
 #!/bin/bash
 
-AMBARI_SERVER_HOST="master01"
+AMBARI_SERVER_HOST="reposerver"
 ambariPort="8080"
 cluster="HDPCluster"
 SERVICE_FILE="services.t"
@@ -10,7 +10,10 @@ curlServices(){
 	     -i -H "X-Requested-By: ambari" \
 	     -X POST -d '{"RequestInfo": {"context":"'$context' Service Check from API","command":"'$service'_SERVICE_CHECK"}, "Requests/resource_filters":[{"service_name":"'$context'"}]}' \
 	     http://$AMBARI_SERVER_HOST:$ambariPort/api/v1/clusters/$cluster/requests
+<<<<<<< Updated upstream
 	
+=======
+>>>>>>> Stashed changes
 }
 
 printMenu(){

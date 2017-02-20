@@ -157,6 +157,15 @@ syncTime() {
   service ntpd start
 }
 
+setHostsDNS() {
+	for i in `grep mscottsummers hosts |awk '{ print $1 }'` 
+	do
+	  scp -o StrictHostKeyChecking=no ~/.ssh root@$i:~/
+	  scp hosts root@$i:/etc/hosts
+	done
+}
+
+
 #nic1
 #nic2
 rthKhugepageDefrag
@@ -170,3 +179,4 @@ addHostFile
 #copySSHKey
 #kickoffAmbariInstall
 syncTime
+#setHostsDNS
